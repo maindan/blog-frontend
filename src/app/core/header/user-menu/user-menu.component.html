@@ -1,0 +1,28 @@
+@if(isAuth) {
+<div class="card flex justify-center">
+  <p-menu #menu [model]="items" [popup]="true" />
+  <p-menu [model]="items">
+    <ng-template #item let-item>
+      <ng-container *ngIf="item.route; else elseBlock">
+        <a class="p-menu-item-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </ng-container>
+      <ng-template #elseBlock>
+        <a [href]="item.url" class="p-menu-item-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </ng-template>
+    </ng-template>
+  </p-menu>
+  <p-button [outlined]="true" (click)="menu.toggle($event)">
+    <div>
+      <p-avatar [label]="userIcon" styleClass="mr-2" [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }" />
+    </div>
+    <span>{{userData?.username}}</span>
+    <i class="pi pi-ellipsis-v"></i>
+  </p-button>
+</div>
+}

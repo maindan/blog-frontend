@@ -1,0 +1,8 @@
+<header class="w-full h-full flex align-items-center justify-content-between px-4 border-bottom-1">
+  <span class="font-bold text-xl">mainblog</span>
+  @if(isAuthenticated) {
+    <app-user-menu />
+  } @else {
+    <p-button icon="pi pi-arrow-right" iconPos="right" label="Entrar"></p-button>
+  }
+</header>

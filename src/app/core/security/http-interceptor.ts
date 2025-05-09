@@ -12,8 +12,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let dupReq = req;
     const token: string = this.authService.getToken()!;
-
-    if (!req.url.includes('auth') && !req.url.includes('recover_password')) {
+    if (!req.url.includes('token') || !req.url.includes('recover_password')) {
       dupReq = this.setHeader(req, token);
     }
 

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../security/user.service';
 import { IUser } from '../../../shared/interfaces/security/user';
-import { AuthService } from '../../security/auth.service';
+import { AuthService, USER_ID } from '../../security/auth.service';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
 import { Avatar } from 'primeng/avatar';
@@ -30,6 +30,7 @@ export class UserMenuComponent implements OnInit {
   items: MenuItem[] | undefined;
 
   constructor() {
+
     this.userService.getUserData.subscribe({
       next: (value: IUser | null) => {
         if (value) {
@@ -39,6 +40,10 @@ export class UserMenuComponent implements OnInit {
         }
       },
     });
+
+    if(!this.userData) {
+      this.authService.setUser(parseInt(localStorage.getItem(USER_ID)!))
+    }
   }
 
   public logout(): void {

@@ -3,6 +3,6 @@
   @if(isAuthenticated) {
     <app-user-menu />
   } @else {
-    <p-button icon="pi pi-arrow-right" iconPos="right" label="Entrar"></p-button>
+    <p-button icon="pi pi-arrow-right" iconPos="right" label="Entrar" (click)="openSignModal()"></p-button>
   }
 </header>

@@ -44,11 +44,11 @@ export class AuthService {
   }
 
   public getRefreshToken():string | null {
-    return localStorage.getItem(AUTH_TOKEN_KEY);
+    return localStorage.getItem(AUTH_TOKEN_REFRESH);
   }
 
   private setRefreshToken(token:string) {
-    localStorage.setItem(AUTH_TOKEN_KEY, token);
+    localStorage.setItem(AUTH_TOKEN_REFRESH, token);
   }
 
   private decodeToken(token: string):IAuth {
@@ -59,19 +59,21 @@ export class AuthService {
     return lastValueFrom(this.http.post<ILoginRes>(`${environment.apiUrl}/token/`, userLogin))
   }
 
-  public setLogin(token: string) {
-    this.setToken(token);
-    const data: IAuth = this.decodeToken(token);
+  public setLogin(res: ILoginRes) {
+
+    this.setToken(res.access);
+    this.setRefreshToken(res.refresh);
+    const data: IAuth = this.decodeToken(res.access);
     localStorage.setItem(USER_ID, `${data.user_id}`);
     this.setLoggedIn(true);
     this.setUser(data.user_id);
   }
 
-  private setUser(id:number):void {
+  public setUser(id:number):void {
     this.userService.reqUserData(id)
       .subscribe({
         next: (value: IUser) => {
-          this.userService.setUserData(value)
+          this.userService.setUserData(value);
         }
       })
   }

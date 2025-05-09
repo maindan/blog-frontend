@@ -5,7 +5,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi
 import { BlogTheme, BlogTranslation } from './primeng.theme';
 import { providePrimeNG } from 'primeng/config';
 import { MessageService } from 'primeng/api';
-// import { CustomHttpInterceptor } from './core/security/http-interceptor';
+import { CustomHttpInterceptor } from './core/security/http-interceptor';
 
 import { routes } from './app.routes';
 
@@ -27,11 +27,11 @@ export const appConfig: ApplicationConfig = {
       },
       translation: BlogTranslation
     }),
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: CustomHttpInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomHttpInterceptor,
+      multi: true,
+    },
     {
       provide: LOCALE_ID,
       useValue: 'pt-BR'

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output, OutputEmitterRef } from '@angular/core';
 import { Button } from 'primeng/button';
 import { AuthService } from '../security/auth.service';
 import { UserMenuComponent } from "./user-menu/user-menu.component";
@@ -15,6 +15,7 @@ import { UserMenuComponent } from "./user-menu/user-menu.component";
 export class HeaderComponent {
   private authService:AuthService = inject(AuthService);
   protected isAuthenticated: boolean = false;
+  public openSign:OutputEmitterRef<void> = output<void>();
 
   constructor() {
     this.authService.loggedIn.subscribe({
@@ -22,5 +23,9 @@ export class HeaderComponent {
         this.isAuthenticated = value;
       }
     })
+  }
+
+  public openSignModal():void {
+    this.openSign.emit();
   }
 }

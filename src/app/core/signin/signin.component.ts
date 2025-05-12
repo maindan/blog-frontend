@@ -5,6 +5,7 @@ import { FloatLabelModule } from "primeng/floatlabel"
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
 import { AuthService } from '../security/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -26,12 +27,13 @@ export class SigninComponent {
 
   private formBuilder: FormBuilder = inject(FormBuilder);
   private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router);
 
   constructor() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
-    })
+    });
   }
 
   public submitForm(event:Event): void {
@@ -42,7 +44,8 @@ export class SigninComponent {
       this.authService.login(this.loginForm.value)
         .then((res) => {
           this.authService.setLogin(res);
-          this.closeModal()
+          this.closeModal();
+          this.router.navigate(['news']);
         })
         .catch((err) => {
           console.log(err);

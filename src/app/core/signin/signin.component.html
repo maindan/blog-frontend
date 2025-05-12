@@ -1,4 +1,4 @@
-<p-dialog header="Edit Profile" [modal]="true" [visible]="visibility()" [style]="{ width: '25rem', height: '25rem' }"
+<p-dialog header="Edit Profile" [modal]="true" [visible]="visibility()" [style]="{ width: '25rem',}"
   [resizable]="false" [draggable]="false" [closable]="false">
   <ng-template #header>
     <div class="flex align-items-center justify-content-between w-full">
@@ -12,13 +12,13 @@
     <form class="w-full h-full py-4 flex flex-column gap-4" [formGroup]="loginForm" (submit)="submitForm($event)">
       <div>
         <p-floatlabel variant="on">
-          <input pInputText id="email" autocomplete="off" formControlName="email" type="email" />
+          <input pInputText id="email" formControlName="email" type="email" autocomplete="off" />
           <label for="email">E-mail</label>
         </p-floatlabel>
       </div>
       <div>
         <p-floatlabel variant="on">
-          <input pInputText id="password" autocomplete="off" formControlName="password" type="password" />
+          <input pInputText id="password" formControlName="password" type="password" autocomplete="off"  />
           <label for="password">Senha</label>
         </p-floatlabel>
       </div>

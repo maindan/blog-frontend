@@ -2,12 +2,14 @@ import { Component, inject, output, OutputEmitterRef } from '@angular/core';
 import { Button } from 'primeng/button';
 import { AuthService } from '../security/auth.service';
 import { UserMenuComponent } from "./user-menu/user-menu.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   imports: [
     Button,
-    UserMenuComponent
+    UserMenuComponent,
+    RouterLink
 ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

@@ -1,5 +1,5 @@
-<header class="w-full h-5rem flex align-items-center justify-content-between px-4 border-bottom-1">
-  <span class="font-bold text-xl">mainblog</span>
+<header class="w-full h-5rem flex align-items-center justify-content-between px-4 border-bottom-1 border-black-alpha-10 shadow-1">
+  <span class="font-bold text-xl cursor-pointer" [routerLink]="['']">mainblog</span>
   @if(isAuthenticated) {
     <app-user-menu />
   } @else {

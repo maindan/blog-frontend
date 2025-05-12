@@ -17,13 +17,11 @@
     </ng-template>
   </p-menu>
 
-  <p-button (click)="menu.toggle($event)">
-    <div>
-      <p-avatar [label]="userIcon" styleClass="mr-2" shape="circle" [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }" />
-    </div>
-    <span>{{userData?.username}}</span>
-    <i class="pi pi-ellipsis-v"></i>
-  </p-button>
+  <div class="cursor-pointer">
+    <p-avatar [label]="userIcon" (click)="menu.toggle($event)" size="large" shape="circle" [style]="{ 'background-color': '#202020', color: '#fff' }" />
+  </div>
+
+
 
 </div>
 }

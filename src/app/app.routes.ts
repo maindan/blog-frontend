@@ -1,12 +1,18 @@
 import { Routes } from '@angular/router';
 import { HomepageComponent } from './modules/homepage/homepage.component';
+import { NewsViewComponent } from './modules/news/news-view/news-view.component';
 
 export const routes: Routes = [
   {
     path: "",
-    title: "Blog",
+    title: "mainblog",
     pathMatch: "full",
     component: HomepageComponent
+  },
+  {
+    path: "news",
+    title: "mainblog - Novidades",
+    component: NewsViewComponent
   },
   // {
   //   path: "login",

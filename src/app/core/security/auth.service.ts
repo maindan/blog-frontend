@@ -47,6 +47,10 @@ export class AuthService {
     return localStorage.getItem(AUTH_TOKEN_REFRESH);
   }
 
+  public getUserId(): number | null {
+    return parseInt(localStorage.getItem((USER_ID))!);
+  }
+
   private setRefreshToken(token:string) {
     localStorage.setItem(AUTH_TOKEN_REFRESH, token);
   }

@@ -7,12 +7,12 @@ import { Button } from 'primeng/button';
 import { Avatar } from 'primeng/avatar';
 import { MenuItem } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
   imports: [
     Menu,
-    Button,
     Avatar,
     CommonModule
   ],
@@ -22,9 +22,11 @@ import { CommonModule } from '@angular/common';
 export class UserMenuComponent implements OnInit {
   private userService: UserService = inject(UserService);
   private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router);
 
   public userData: IUser | null = null;
   public userIcon:string = '';
+  public userId: number | null = null;
   public isAuth: boolean = false;
 
   items: MenuItem[] | undefined;
@@ -36,7 +38,9 @@ export class UserMenuComponent implements OnInit {
         if (value) {
           this.isAuth = true;
           this.userData = value;
-          this.userIcon = value.username.split('')[0].toLocaleUpperCase()
+          this.userIcon = value.username.split('')[0].toLocaleUpperCase();
+          this.setItemsMenu();
+          this.setUserId();
         }
       },
     });
@@ -52,17 +56,45 @@ export class UserMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setItemsMenu()
+  }
+
+  private setUserId(): void {
+    this.userId = this.authService.getUserId();
+  }
+
+  private setItemsMenu(): void {
     this.items = [
       {
-        label: 'Options',
+        label: `@${this.userData?.username.toLocaleLowerCase() ?? ''}`,
         items: [
           {
-            label: 'Refresh',
-            icon: 'pi pi-refresh',
+            label: 'Novo post',
+            icon: 'pi pi-plus',
+            command: () => {
+              this.router.navigate(['new_post'])
+            },
           },
           {
-            label: 'Export',
-            icon: 'pi pi-upload',
+            label: 'Meus posts',
+            icon: 'pi pi-lightbulb',
+            command: () => {
+              this.router.navigate([this.userId, 'posts'])
+            },
+          },
+          {
+            label: 'Minha conta',
+            icon: 'pi pi-user',
+            command: () => {
+              this.router.navigate(['account'])
+            },
+          },
+          {
+            label: 'Logout',
+            icon: 'pi pi-sign-out',
+            command: () => {
+              this.authService.logout();
+            },
           },
         ],
       },

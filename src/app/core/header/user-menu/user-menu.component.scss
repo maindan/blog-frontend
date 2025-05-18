@@ -1,0 +1,10 @@
+::ng-deep {
+  .p-menu-submenu-label {
+    text-align: center;
+    background: #202020;
+    border-radius: 4px;
+    color: white;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+}

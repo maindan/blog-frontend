@@ -1,1 +1,7 @@
-<p>post-list works!</p>
+@for(item of posts; track item) {
+  <app-post-card [post]="item" />
+} @empty {
+  <section class="w-full flex align-items-center justify-content-center">
+    <p>Nenhum item encontrado</p>
+  </section>
+}

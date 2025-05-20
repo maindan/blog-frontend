@@ -32,7 +32,7 @@ export class SigninComponent {
   constructor() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(1)]]
     });
   }
 
@@ -49,7 +49,7 @@ export class SigninComponent {
         })
         .catch((err) => {
           console.log(err);
-          alert("Ocorreu um erro!")
+          alert(err.error.detail)
         })
     } else {
       alert('form inválido')

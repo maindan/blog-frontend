@@ -1,6 +1,13 @@
-<div class="card">
-  <p>{{post().title}}</p>
+<div
+class="card flex flex-column justify-content-center cursor-pointer p-3 mb-2 shadow-1 gap-3"
+[routerLink]="['post', post().id]" >
+  <h4>{{post().title}}</h4>
+  <p>{{post().subtitle}}</p>
   @for(tag of post().tags; track tag.id) {
     <app-tag [tag]="tag.name" />
   }
+  <div class="published flex align-items-center gap-2">
+    <p class="publish_date">Publicado em {{post().created_at | date: "d 'de' MMM YY" : '' : 'pt-BR'}}</p>
+    <p class="">{{post().created_by}}</p>
+  </div>
 </div>

@@ -6,6 +6,9 @@ import { BlogTheme, BlogTranslation } from './primeng.theme';
 import { providePrimeNG } from 'primeng/config';
 import { MessageService } from 'primeng/api';
 import { CustomHttpInterceptor } from './core/security/http-interceptor';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 import { routes } from './app.routes';
 

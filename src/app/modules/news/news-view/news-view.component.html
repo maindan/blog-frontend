@@ -1,6 +1,6 @@
-<div class="container flex">
+<div class="container flex gap-2">
   <div class="content">
-    <app-post-list />
+    <app-post-list [posts]="posts" />
   </div>
   @if(!isMobile) {
     <div class="w-20rem h-25rem bg-black-alpha-30"></div>

@@ -1,4 +1,4 @@
-@for(item of posts; track item) {
+@for(item of posts(); track item) {
   <app-post-card [post]="item" />
 } @empty {
   <section class="w-full flex align-items-center justify-content-center">

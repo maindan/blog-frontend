@@ -3,7 +3,9 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { SigninComponent } from "../signin/signin.component";
-import { MobileService } from '../../shared/services/mobile-service';
+import { MobileService } from '../../shared/services/mobile.service';
+import { LoadingComponent } from "../../shared/components/loading/loading.component";
+import { SharedService } from '../../shared/services/shared.service';
 
 @Component({
   selector: 'app-home',
@@ -11,15 +13,18 @@ import { MobileService } from '../../shared/services/mobile-service';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    SigninComponent
+    SigninComponent,
+    LoadingComponent
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   public signInModal:boolean = false;
-  private mobileService: MobileService = inject(MobileService);
   public isMobile: boolean = false;
+
+  private mobileService: MobileService = inject(MobileService);
+  private sharedService: SharedService = inject(SharedService);
 
   handleSignInModal(value:boolean):void {
     this.signInModal = value

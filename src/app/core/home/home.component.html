@@ -1,0 +1,9 @@
+<div class="flex flex-column h-full">
+  <app-header (openSign)="handleSignInModal(true)" />
+  <div class="h-full">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer />
+</div>
+
+<app-signin [visibility]="signInModal" (closeEvent)="handleSignInModal($event)" />

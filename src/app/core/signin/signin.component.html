@@ -1,0 +1,30 @@
+<p-dialog header="Edit Profile" [modal]="true" [visible]="visibility()" [style]="{ width: '25rem',}"
+  [resizable]="false" [draggable]="false" [closable]="false">
+  <ng-template #header>
+    <div class="flex align-items-center justify-content-between w-full">
+      <span class="font-bold text-xl whitespace-nowrap">Entrar</span>
+      <i class="pi pi-times cursor-pointer" (click)="closeModal()"></i>
+    </div>
+  </ng-template>
+
+  <div class="w-full h-full flex flex-column">
+    <span class="p-text-secondary block">Informe seus dados para fazer login.</span>
+    <form class="w-full h-full pt-4 flex flex-column gap-4" [formGroup]="loginForm" (submit)="submitForm($event)">
+      <div>
+        <p-floatlabel variant="on">
+          <input pInputText id="email" formControlName="email" type="email" autocomplete="off" />
+          <label for="email">E-mail</label>
+        </p-floatlabel>
+      </div>
+      <div>
+        <p-floatlabel variant="on">
+          <input pInputText id="password" formControlName="password" type="password" autocomplete="off"  />
+          <label for="password">Senha</label>
+        </p-floatlabel>
+      </div>
+      <div class="flex justify-end gap-2 mt-auto ml-auto">
+        <p-button label="login" type="submit" />
+      </div>
+    </form>
+  </div>
+</p-dialog>
